@@ -14,13 +14,18 @@ module Hangman
       puts 'Guess this word: ' + Graphics.obfuscate_word(word, '')
 
       while true
+
         print "[#{chances - wrong_tries} chances left]: "
 
         char = gets.chomp
         Graphics.clear_screen
 
         if word.include? char
-          if guess.include? char
+          if char == ""
+            puts "You must enter a letter. Don't press enter!"
+            puts 'Try again: ' + Graphics.obfuscate_word(word, guess)
+          elsif
+           guess.include? char
             puts "You already entered '#{char}'. Yes, it is still correct.. 🙄"
             puts 'Try again: ' + Graphics.obfuscate_word(word, guess)
           else
