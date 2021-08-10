@@ -7,9 +7,11 @@ module Hangman
       @wrong_tries = 0
       @guess = ""
       @word = Dictionary.random
+      
     end
 
     def play
+      bad_guesses = []
       Graphics.clear_screen
       puts 'Guess this word: ' + Graphics.obfuscate_word(word, '')
 
@@ -24,6 +26,7 @@ module Hangman
           if char == ""
             puts "You must enter a letter. Don't press enter!"
             puts 'Try again: ' + Graphics.obfuscate_word(word, guess)
+            placeholder = Graphics.obfuscate_word(word, guess)
           elsif
            guess.include? char
             puts "You already entered '#{char}'. Yes, it is still correct.. 🙄"
@@ -40,15 +43,28 @@ module Hangman
             puts "\n\nWELL DONE!! YOU SURVIVED"
             break
           end
+        
         else
-          puts "OH NOES! The word doesn't contain '#{char}'"
-          @wrong_tries = @wrong_tries + 1
+          if char.match?(/[A-Za-z]/)
+            
+            if bad_guesses.include? char
+              puts "You already entered '#{char}'. Yes, it is still incorrect.. 🙄"
+            else
+              puts "OH NOES! The word doesn't contain '#{char}'"
+              @wrong_tries = @wrong_tries + 1
+              bad_guesses.push(char);
+            end
 
-          if wrong_tries == chances
-            puts Graphics::DEAD
-            puts "\nARRRRGGGGGGGGGGG YOU LOST! 😭  😵  ☠️"
-            break
+            if wrong_tries == chances
+              puts Graphics::DEAD
+              puts "\nARRRRGGGGGGGGGGG YOU LOST! 😭  😵  ☠️"
+              break
+            else
+              puts 'Try another: ' + Graphics.obfuscate_word(word, guess)
+            end
+
           else
+            puts "'#{char}' is not a letter... 🙄"
             puts 'Try another: ' + Graphics.obfuscate_word(word, guess)
           end
         end
