@@ -14,6 +14,7 @@ module Hangman
       bad_guesses = []
       Graphics.clear_screen
       puts 'Guess this word: ' + Graphics.obfuscate_word(word, '')
+      puts "Word: '#{word}'"
 
       while true
 
