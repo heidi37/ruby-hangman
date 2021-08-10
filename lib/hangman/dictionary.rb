@@ -5,11 +5,8 @@ module Hangman
     # array =IO.readlines("linuxwords", chomp: true).split
     # }
 
-    array = File.readlines(File.join(__dir__, 'linuxwords.txt'), chomp: true).split
+    WORDS = File.readlines(File.join(__dir__, 'linuxwords.txt'), chomp: true)
 
-    WORDS = array
-
-    puts WORDS
 
     def self.random
       WORDS.sample
