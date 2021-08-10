@@ -10,12 +10,24 @@ module Hangman
       
     end
 
+    trap "SIGINT" do
+      Graphics.clear_screen
+      puts "Goodbye, cruel world."
+      exit 130
+    end
+
     def play
       bad_guesses = []
       Graphics.clear_screen
-      puts 'Guess this word: ' + Graphics.obfuscate_word(word, '')
+
+      while word.length < 5
+        @word = Dictionary.random
+      end
+
       puts "Word: '#{word}'"
 
+      puts 'Guess this word: ' + Graphics.obfuscate_word(word, '')
+      
       while true
 
         print "[#{chances - wrong_tries} chances left]: "
@@ -40,7 +52,14 @@ module Hangman
           end
 
           unless placeholder.include? Graphics::OBFUSCATION_CHAR
+            Graphics.clear_screen
             puts Graphics::ALIVE
+            sleep 1.1
+            Graphics.clear_screen
+            puts Graphics::ALIVE2
+            sleep 1.3
+            Graphics.clear_screen
+            puts Graphics::ALIVE3
             puts "\n\nWELL DONE!! YOU SURVIVED"
             break
           end

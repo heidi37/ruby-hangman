@@ -18,6 +18,21 @@ HANG
   /   \\
 WIN
 
+  ALIVE2 =<<WIN
+
+  \\(•_•)
+  (  (>
+  /   \\
+WIN
+  
+ALIVE3 = <<WIN
+
+  (•_•)
+  <)  )>
+  /   \\
+WIN
+
+
     OBFUSCATION_CHAR = "👾"
 
     def self.clear_screen

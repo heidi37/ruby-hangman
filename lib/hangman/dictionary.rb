@@ -1,9 +1,5 @@
 module Hangman
   module Dictionary
-    # WORDS = %w{
-    #   banana avocado apple chocolate froyo peanut
-    # array =IO.readlines("linuxwords", chomp: true).split
-    # }
 
     WORDS = File.readlines(File.join(__dir__, 'linuxwords.txt'), chomp: true)
 
@@ -11,5 +7,6 @@ module Hangman
     def self.random
       WORDS.sample
     end
+
   end
 end
